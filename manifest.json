@@ -1,9 +1,11 @@
 {
-  "name": "example",
+  "name": "한본어로 읽어줘 v.0.01",
   "version": "0.0.1",
-  "description": "example",
+  "description": "한글문장을 일본식발음으로 읽어줍니다. 그리고 일본어도 읽어줍니다.",
   "icons": {
-    "16": "icon_16.png"
+     "16": "icon_16.png",
+     "48": "icon_48.png",
+     "128": "icon_128.png"
   },
   "background": {
      "scripts": ["app.js"]
