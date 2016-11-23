@@ -1,0 +1,13 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "description": "example",
+  "icons": {
+    "16": "icon_16.png"
+  },
+  "background": {
+     "scripts": ["app.js"]
+  },
+  "permissions": ["contextMenus", "tts"],
+  "manifest_version": 2
+}
