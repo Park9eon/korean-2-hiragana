@@ -8,13 +8,14 @@ function createContextMenu(){
 
 const contextMenuStop = {
   title: "그만!!!!",
-  contexts:["selection"],
+  contexts:["selection", "editable"],
   onclick: stop
 };
 
 // 읽습니다.
-function speech(info) {
+function speech(info, tab) {
   // 읽지 않는중에만 재생!
+  // console.log(tab, info)
   var eventLinstener = function(eventRequest) {
     switch (eventRequest.type) {
       case "word": // 읽는 중 - 정지버튼 활성화
@@ -26,6 +27,11 @@ function speech(info) {
     };
   };
   let jpText = korean_to_hiragana(info.selectionText)
+  if (info.editable) {
+    chrome.tabs.executeScript({
+      code: "var documentDOM = document.getSelection().anchorNode.firstChild; documentDOM.value = documentDOM.value.replace('" + info.selectionText + "', '" + jpText + "')"
+    });
+  }
   chrome.tts.speak(jpText, {'lang': 'ja-JP', 'rate': 1.0, "onEvent": eventLinstener}); // 선택한 글자, 언어, 속도, event처리
 };
 

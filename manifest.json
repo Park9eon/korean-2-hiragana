@@ -10,6 +10,6 @@
   "background": {
      "scripts": ["app.js"]
   },
-  "permissions": ["contextMenus", "tts"],
+  "permissions": ["contextMenus", "tts", "webNavigation", "*://*/*"],
   "manifest_version": 2
 }
