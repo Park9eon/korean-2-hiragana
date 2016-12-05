@@ -1,4 +1,4 @@
-function createContextMenu(){
+function newSpeechContext(){
   return {
     title: "'%s'를 일본어로 읽기",
     contexts:["selection"],
@@ -6,8 +6,16 @@ function createContextMenu(){
   };
 };
 
+function newTraslateContext(){
+  return {
+    title: "'%s'를 히라가나로 변환",
+    contexts:["editable"],
+    onclick: translate
+  };
+};
+
 const contextMenuStop = {
-  title: "그만!!!!",
+  title: "그만읽어주세요.",
   contexts:["selection", "editable"],
   onclick: stop
 };
@@ -22,27 +30,32 @@ function speech(info, tab) {
         chrome.contextMenus.update(info.menuItemId, contextMenuStop);
         break;
       case "end":
-        chrome.contextMenus.update(info.menuItemId, createContextMenu());
+        chrome.contextMenus.update(info.menuItemId, newSpeechContext());
         break;
     };
   };
+  let jpText = korean_to_hiragana(info.selectionText)
+  chrome.tts.speak(jpText, {'lang': 'ja-JP', 'rate': 1.0, "onEvent": eventLinstener}); // 선택한 글자, 언어, 속도, event처리
+};
+
+function translate(info, tab) {
   let jpText = korean_to_hiragana(info.selectionText)
   if (info.editable) {
     chrome.tabs.executeScript({
       code: "var documentDOM = document.getSelection().anchorNode.firstChild; documentDOM.value = documentDOM.value.replace('" + info.selectionText + "', '" + jpText + "')"
     });
   }
-  chrome.tts.speak(jpText, {'lang': 'ja-JP', 'rate': 1.0, "onEvent": eventLinstener}); // 선택한 글자, 언어, 속도, event처리
-};
+}
 
 // 정지
 function stop(info) {
   chrome.tts.stop();
-  chrome.contextMenus.update(info.menuItemId, createContextMenu());
+  chrome.contextMenus.update(info.menuItemId, newSpeechContext());
 };
 
 // 시작 - 기본설정
-chrome.contextMenus.create(createContextMenu());
+chrome.contextMenus.create(newSpeechContext());
+chrome.contextMenus.create(newTraslateContext());
 
 /**
  * Created by park9eon on 8/25/16.
