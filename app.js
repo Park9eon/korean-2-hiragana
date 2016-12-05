@@ -42,7 +42,7 @@ function translate(info, tab) {
   let jpText = korean_to_hiragana(info.selectionText)
   if (info.editable) {
     chrome.tabs.executeScript({
-      code: "var documentDOM = document.getSelection().anchorNode.firstChild; documentDOM.value = documentDOM.value.replace('" + info.selectionText + "', '" + jpText + "')"
+      code: "var documentDOM = document.getSelection().anchorNode.firstChild; if (documentDOM.value == null || documentDOM.value == undefined) { document.getElementById(documentDOM.nextSibling.id).value = document.getElementById(documentDOM.nextSibling.id).value.replace('" + info.selectionText + "', '" + jpText + "'); } else documentDOM.value = documentDOM.value.replace('" + info.selectionText + "', '" + jpText + "')"
     });
   }
 }
