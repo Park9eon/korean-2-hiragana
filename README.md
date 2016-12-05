@@ -1,4 +1,4 @@
-한본어 - 크롬 확장프로그램 (Chrome Extension)
+![](icon_48.png) 한본어 - 크롬 확장프로그램 (Chrome Extension)
 -----
 
 ![](https://www.google.co.kr/chrome/assets/common/images/chrome_logo_2x.png?mmfb=a5234ae3c4265f687c7fffae2760a907)
