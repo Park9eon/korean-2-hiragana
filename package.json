@@ -1,6 +1,6 @@
 {
   "name": "Kapanese",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "크롬확장 프로그램 - 한글문장을 히라가나로 변환하거나 TTS(Text to speech)를 실행합니다.",
   "scripts": {
     "build": "gulp && gulp copy"

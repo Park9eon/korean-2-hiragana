@@ -114,7 +114,7 @@ var JKService = /** @class */ (function () {
     JKService.JP_WORD_TABLE = [
         ["が", "げ", "ぎゃ", "ぎぇ", "ご", "げ", "ぎょ", "ぎぇ", "ご", "ごぁ", "きぇ", "ごぇ", "ぎょ", "ぐ", "ぐぉ", "ぐえ", "ぐぃ", "ぎゅ", "ぐ", "ぐい", "ぎ"],
         ["な", "ね", "にゃ", "しぇ", "の", "ね", "にょ", "にぇ", "の", "のぁ", "にぇ", "のぇ", "にょ", "ぬ", "ぬぉ", "ぬえ", "ぬぃ", "にゅ", "ぬ", "ぬい", "に"],
-        ["だ", "で", "ぢゃ", "ぢぇ", "ど", "で", "ぢょ", "ぢぇ", "ど", "どぁ", "ぢぇ", "どぇ", "ぢょ", "づ", "づぉ", "づえ", "づぃ", "ぢゅ", "づ", "づい", "ぢ"],
+        ["だ", "で", "ぢゃ", "ぢぇ", "ど", "で", "ぢょ", "ぢぇ", "ど", "どぁ", "ぢぇ", "どぇ", "ぢょ", "づ", "づぉ", "づえ", "づぃ", "ぢゅ", "どぁ", "づい", "ぢ"],
         ["ら", "れ", "りゃ", "ふぇ", "ろ", "れ", "りょ", "ふぇ", "ろ", "ろぁ", "りぇ", "ろぇ", "りょ", "る", "るぉ", "るえ", "るぃ", "りゅ", "る", "るい", "り"],
         ["ま", "め", "みゃ", "みぇ", "も", "め", "みょ", "みぇ", "も", "もぁ", "みぇ", "もぇ", "みょ", "む", "むぉ", "むえ", "むぃ", "みゅ", "む", "むい", "み"],
         ["ば", "べ", "びゃ", "びぇ", "ぼ", "べ", "びょ", "びぇ", "ぼ", "ぼぁ", "びぇ", "ぼぇ", "びょ", "ぶ", "ぶぉ", "ぶえ", "ぶぃ", "びゅ", "ぶ", "ぶい", "び"],
@@ -216,7 +216,7 @@ var ConvertService = /** @class */ (function (_super) {
         if (info.editable) {
             chrome.tabs.executeScript({
                 // language=JavaScript
-                code: "var selection = window.getSelection();\nconsole.log(selection);\nif (selection.anchorNode.childNodes.length > 0) {\n    for (var i = 0; i < selection.anchorNode.childNodes.length; i++) {\n        var node = selection.anchorNode.childNodes[i];\n        if (node.value &&\n            (\n                node.type === 'text' ||\n                node.type === 'textarea' ||\n                node.type === 'search' ||\n                node.type === 'email'\n            )) {\n            if (node.value) {\n                node.value = \"" + jpText + "\";\n            }\n            if (node.nodeValue) {\n                node.nodeValue = \"" + jpText + "\";\n            }\n        }\n    }\n} else {\n    selection.anchorNode.nodeValue = \"" + jpText + "\";\n    selection.anchorNode.textContent = \"" + jpText + "\";\n}\n"
+                code: "var selection = window.getSelection();\nconsole.log(selection);\nif (selection.anchorNode.childNodes.length > 0) {\n    for (var i = 0; i < selection.anchorNode.childNodes.length; i++) {\n        var node = selection.anchorNode.childNodes[i];\n        if (node.value &&\n            (\n                node.type === 'text' ||\n                node.type === 'textarea' ||\n                node.type === 'search' ||\n                node.type === 'email'\n            )) {\n            if (node.value) {\n                node.value = \"" + jpText + "\";\n            }\n            if (node.nodeValue) {\n                node.nodeValue = \"" + jpText + "\";\n            }\n            if (node.nodeValue) {\n                node.textContent = \"" + jpText + "\";\n            }\n        }\n    }\n} else {\n    selection.anchorNode.nodeValue = \"" + jpText + "\";\n    selection.anchorNode.textContent = \"" + jpText + "\";\n}\n"
             });
         }
     };
