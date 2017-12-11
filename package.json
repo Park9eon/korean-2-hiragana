@@ -1,0 +1,33 @@
+{
+  "name": "Kapanese",
+  "version": "1.0.0",
+  "description": "크롬확장 프로그램 - 한글문장을 히라가나로 변환하거나 TTS(Text to speech)를 실행합니다.",
+  "scripts": {
+    "build": "gulp && gulp copy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Park9eon/korean-2-hiragana.git"
+  },
+  "keywords": [
+    "한본어",
+    "크롬확장프로그램"
+  ],
+  "author": "Park9eon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Park9eon/korean-2-hiragana/issues"
+  },
+  "homepage": "https://github.com/Park9eon/korean-2-hiragana#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.55",
+    "gulp": "^3.9.1",
+    "gulp-minify": "^2.1.0",
+    "gulp-typescript": "^3.2.3",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  }
+}
