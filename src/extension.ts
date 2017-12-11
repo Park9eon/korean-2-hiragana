@@ -112,8 +112,6 @@ class JKService {
                         return '\\';
                     } else if (char === '.') {
                         return '。';
-                    } else if (char === '?') {
-                        return 'か';
                     } else {
                         return char;
                     }
@@ -216,18 +214,33 @@ class ConvertService extends JKService {
                 // language=JavaScript
                 code:
                     `var selection = window.getSelection();
-for (var i = 0; i < selection.focusNode.childNodes.length; i++) {
-    var node = selection.focusNode.childNodes[i];
-    if (node.value &&
-        (
-            node.type === 'text' ||
-            node.type === 'textarea' ||
-            node.type === 'search' ||
-            node.type === 'email'
-        )) {
-        node.value = "${jpText}";
+console.log(selection);
+if (selection.anchorNode.childNodes.length > 0) {
+    for (var i = 0; i < selection.anchorNode.childNodes.length; i++) {
+        var node = selection.anchorNode.childNodes[i];
+        if (node.value &&
+            (
+                node.type === 'text' ||
+                node.type === 'textarea' ||
+                node.type === 'search' ||
+                node.type === 'email'
+            )) {
+            if (node.value) {
+                node.value = "${jpText}";
+            }
+            if (node.nodeValue) {
+                node.nodeValue = "${jpText}";
+            }
+            if (node.nodeValue) {
+                node.textContent = "${jpText}";
+            }
+        }
     }
-}`
+} else {
+    selection.anchorNode.nodeValue = "${jpText}";
+    selection.anchorNode.textContent = "${jpText}";
+}
+`
             });
         }
     }

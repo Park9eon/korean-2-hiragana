@@ -97,9 +97,6 @@ var JKService = /** @class */ (function () {
                 else if (char === '.') {
                     return '。';
                 }
-                else if (char === '?') {
-                    return 'か';
-                }
                 else {
                     return char;
                 }
@@ -219,7 +216,7 @@ var ConvertService = /** @class */ (function (_super) {
         if (info.editable) {
             chrome.tabs.executeScript({
                 // language=JavaScript
-                code: "var selection = window.getSelection();\nfor (var i = 0; i < selection.focusNode.childNodes.length; i++) {\n    var node = selection.focusNode.childNodes[i];\n    if (node.value &&\n        (\n            node.type === 'text' ||\n            node.type === 'textarea' ||\n            node.type === 'search' ||\n            node.type === 'email'\n        )) {\n        node.value = \"" + jpText + "\";\n    }\n}"
+                code: "var selection = window.getSelection();\nconsole.log(selection);\nif (selection.anchorNode.childNodes.length > 0) {\n    for (var i = 0; i < selection.anchorNode.childNodes.length; i++) {\n        var node = selection.anchorNode.childNodes[i];\n        if (node.value &&\n            (\n                node.type === 'text' ||\n                node.type === 'textarea' ||\n                node.type === 'search' ||\n                node.type === 'email'\n            )) {\n            if (node.value) {\n                node.value = \"" + jpText + "\";\n            }\n            if (node.nodeValue) {\n                node.nodeValue = \"" + jpText + "\";\n            }\n        }\n    }\n} else {\n    selection.anchorNode.nodeValue = \"" + jpText + "\";\n    selection.anchorNode.textContent = \"" + jpText + "\";\n}\n"
             });
         }
     };
