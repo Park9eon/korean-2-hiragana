@@ -1,6 +1,6 @@
 {
   "name": "한본어",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "한글문장을 히라가나로 변환하거나 TTS(Text to speech)를 실행합니다.",
   "icons": {
      "16": "assets/icon_16.png",
